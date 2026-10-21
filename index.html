@@ -37,7 +37,6 @@
             padding-bottom: 40px;
         }
 
-        /* 水印背景 Watermark Background */
         .watermark-overlay {
             position: fixed;
             top: 0;
@@ -45,27 +44,25 @@
             width: 100vw;
             height: 100vh;
             pointer-events: none;
-            z-index: 999;
+            z-index: 1;
             opacity: 0.04;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(4, 1fr);
             transform: rotate(-25deg) scale(1.3);
         }
 
         .watermark-text {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 900;
             color: #000;
             display: flex;
             align-items: center;
             justify-content: center;
             text-transform: uppercase;
-            letter-spacing: 2px;
             white-space: nowrap;
         }
 
-        /* 顶部品牌 Header */
         header {
             width: 100%;
             background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
@@ -85,34 +82,21 @@
             padding: 6px 16px;
             border-radius: 30px;
             margin-bottom: 6px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .brand-badge span {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 800;
-            letter-spacing: 1px;
             color: #fbbf24;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
+        h1 { font-size: 1.3rem; font-weight: 700; }
+        p.subtitle { font-size: 0.85rem; opacity: 0.9; margin-top: 2px; }
 
-        p.subtitle {
-            font-size: 0.85rem;
-            opacity: 0.9;
-            margin-top: 2px;
-        }
-
-        /* 主容器 Main Container */
         main {
             width: 100%;
             max-width: 800px;
-            padding: 20px;
+            padding: 15px;
             z-index: 10;
             flex: 1;
             display: flex;
@@ -120,12 +104,11 @@
             align-items: center;
         }
 
-        /* 导航切换 Tab Navigation */
         .mode-nav {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             background: #e0f2fe;
             padding: 6px;
             border-radius: 12px;
@@ -133,15 +116,14 @@
 
         .tab-btn {
             flex: 1;
-            padding: 12px;
+            padding: 10px 5px;
             border: none;
             border-radius: 8px;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             cursor: pointer;
             background: transparent;
             color: #0284c7;
-            transition: all 0.2s ease;
         }
 
         .tab-btn.active {
@@ -150,66 +132,49 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        /* 游戏看板 Dashboard */
         .stats-bar {
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: white;
-            padding: 12px 20px;
+            padding: 10px 15px;
             border-radius: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             font-weight: 700;
+            font-size: 0.9rem;
         }
 
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1rem;
-        }
+        .stat-val { color: var(--primary-light); font-size: 1.1rem; }
 
-        .stat-val {
-            color: var(--primary-light);
-            font-size: 1.2rem;
-        }
-
-        /* 顺口溜记忆卡（Formula View） */
         .formula-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
             width: 100%;
         }
 
         .formula-card {
             background: white;
             border-radius: 14px;
-            padding: 18px;
+            padding: 15px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             border-left: 6px solid var(--primary-light);
-            transition: transform 0.2s;
-        }
-
-        .formula-card:hover {
-            transform: translateY(-3px);
         }
 
         .formula-card h3 {
             color: var(--primary);
-            font-size: 1.1rem;
-            margin-bottom: 8px;
+            font-size: 1rem;
+            margin-bottom: 6px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
         }
 
         .formula-tag {
             background: #dbeafe;
             color: #1e40af;
-            padding: 3px 10px;
+            padding: 2px 8px;
             border-radius: 20px;
             font-size: 0.75rem;
         }
@@ -217,389 +182,238 @@
         .formula-box {
             background: #f8fafc;
             border: 1px dashed #cbd5e1;
-            padding: 10px;
+            padding: 8px;
             border-radius: 8px;
-            margin: 10px 0;
+            margin: 8px 0;
             font-weight: 700;
             color: #0284c7;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
-        .keyword-list {
-            list-style: none;
-            font-size: 0.88rem;
-            line-height: 1.6;
-        }
-
-        .keyword-list li {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+        .keyword-list { list-style: none; font-size: 0.85rem; line-height: 1.6; }
+        .keyword-list li { display: flex; align-items: center; gap: 6px; }
 
         .audio-btn {
             background: #e2e8f0;
             border: none;
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            transition: background 0.2s;
+            font-size: 0.7rem;
         }
 
-        .audio-btn:hover {
-            background: #cbd5e1;
-        }
-
-        /* 卡片配对游戏 (Matching Game) */
         .matching-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
             width: 100%;
         }
 
         .game-card {
             background: white;
-            height: 100px;
+            height: 90px;
             border-radius: 12px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 10px;
+            padding: 8px;
             cursor: pointer;
             box-shadow: 0 4px 8px rgba(0,0,0,0.06);
             border: 2px solid transparent;
-            transition: all 0.2s;
-            position: relative;
         }
 
-        .game-card:hover {
-            transform: scale(1.03);
-        }
+        .game-card.selected { border-color: var(--primary-light); background: #eff6ff; }
+        .game-card.matched { border-color: var(--accent); background: #ecfdf5; opacity: 0.5; pointer-events: none; }
+        .game-card .card-text { font-weight: 700; font-size: 0.85rem; color: var(--text-main); }
+        .game-card .card-cn { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
 
-        .game-card.selected {
-            border-color: var(--primary-light);
-            background: #eff6ff;
-        }
-
-        .game-card.matched {
-            border-color: var(--accent);
-            background: #ecfdf5;
-            opacity: 0.6;
-            cursor: default;
-            pointer-events: none;
-        }
-
-        .game-card .card-text {
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: var(--text-main);
-        }
-
-        .game-card .card-cn {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        /* 问答模式 (Quiz Blitz) */
         .quiz-container {
             width: 100%;
             background: white;
             border-radius: 16px;
-            padding: 24px;
+            padding: 20px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.08);
             text-align: center;
         }
 
-        .quiz-question {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-
-        .quiz-options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+        .quiz-question { font-size: 1.05rem; font-weight: 700; margin-bottom: 15px; color: var(--primary); }
+        .quiz-options { display: flex; flex-direction: column; gap: 10px; }
 
         .option-btn {
-            padding: 14px 20px;
+            padding: 12px 15px;
             border: 2px solid #e2e8f0;
             border-radius: 10px;
             background: white;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
             text-align: left;
             display: flex;
             justify-content: space-between;
-            align-items: center;
         }
 
-        .option-btn:hover {
-            border-color: var(--primary-light);
-            background: #f0f9ff;
-        }
+        .option-btn.correct { background: #d1fae5; border-color: var(--accent); color: #065f46; }
+        .option-btn.wrong { background: #fee2e2; border-color: var(--danger); color: #991b1b; }
 
-        .option-btn.correct {
-            background: #d1fae5;
-            border-color: var(--accent);
-            color: #065f46;
-        }
-
-        .option-btn.wrong {
-            background: #fee2e2;
-            border-color: var(--danger);
-            color: #991b1b;
-        }
-
-        /* 结算总结 Modal */
         .modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            top: 0; left: 0; width: 100vw; height: 100vh;
             background: rgba(0,0,0,0.6);
             z-index: 1000;
-            align-items: center;
-            justify-content: center;
+            align-items: center; justify-content: center;
             padding: 20px;
         }
 
-        .modal.active {
-            display: flex;
-        }
+        .modal.active { display: flex; }
 
         .modal-content {
             background: white;
             border-radius: 20px;
-            padding: 30px;
-            max-width: 450px;
+            padding: 25px;
+            max-width: 400px;
             width: 100%;
             text-align: center;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: popIn 0.3s ease;
-        }
-
-        @keyframes popIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
         }
 
         .restart-btn {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            background: #2563eb;
             color: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
+            padding: 10px 25px;
+            border-radius: 25px;
             font-weight: 700;
-            font-size: 1rem;
+            margin-top: 15px;
             cursor: pointer;
-            margin-top: 20px;
-            box-shadow: 0 4px 12px rgba(37,99,235,0.3);
-            transition: transform 0.2s;
         }
 
-        .restart-btn:hover {
-            transform: scale(1.05);
-        }
-
-        footer {
-            margin-top: auto;
-            text-align: center;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            padding: 10px;
-            z-index: 10;
-        }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 1.2rem; }
-            .matching-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+        footer { margin-top: auto; font-size: 0.75rem; color: var(--text-muted); padding: 10px; z-index: 10; }
     </style>
 </head>
 <body>
 
-    <!-- 水印背景 -->
     <div class="watermark-overlay">
         <div class="watermark-text">PTRB Tuisyen Riang</div>
         <div class="watermark-text">PTRB Tuisyen Riang</div>
         <div class="watermark-text">PTRB Tuisyen Riang</div>
         <div class="watermark-text">PTRB Tuisyen Riang</div>
-        <div class="watermark-text">PTRB Tuisyen Riang</div>
-        <div class="watermark-text">PTRB Tuisyen Riang</div>
-        <div class="watermark-text">PTRB Tuisyen Riang</div>
-        <div class="watermark-text">PTRB Tuisyen Riang</div>
-        <div class="watermark-text">PTRB Tuisyen Riang</div>
-        <div class="watermark-text">PTRB Tuisyen Riang</div>
-        <div class="watermark-text">PTRB Tuisyen Riang</div>
-        <div class="watermark-text">PTRB Tuisyen Riang</div>
     </div>
 
-    <!-- 顶部品牌 Header -->
     <header>
         <div class="brand-badge">
             <span>✨ PTRB TUISYEN RIANG ✨</span>
         </div>
-        <h1>4 Tamadun Awal Dunia (Sejarah Form 1)</h1>
-        <p class="subtitle">Kad Memori & Kuiz Ringkas Kata Kunci | 零基础考前速记小游戏</p>
+        <h1>4 Tamadun Awal Dunia (Form 1)</h1>
+        <p class="subtitle">Kad Memori & Kuiz Ringkas Kata Kunci</p>
     </header>
 
     <main>
-        <!-- Tab 切换 -->
         <div class="mode-nav">
-            <button class="tab-btn active" onclick="switchTab('formula')">💡 口诀卡 Formula</button>
-            <button class="tab-btn" onclick="switchTab('matching')">🧩 配对 Matching</button>
-            <button class="tab-btn" onclick="switchTab('quiz')">⚡ 冲刺 Kuiz</button>
+            <button class="tab-btn active" id="btnFormula">💡 口诀卡 Formula</button>
+            <button class="tab-btn" id="btnMatching">🧩 配对 Matching</button>
+            <button class="tab-btn" id="btnQuiz">⚡ 冲刺 Kuiz</button>
         </div>
 
-        <!-- 状态栏 -->
-        <div class="stats-bar" id="statsBar">
-            <div class="stat-item">⭐ Markah: <span class="stat-val" id="scoreVal">0</span></div>
-            <div class="stat-item">🔥 Combo: <span class="stat-val" id="comboVal">0</span></div>
-            <div class="stat-item">⏱️ Masa: <span class="stat-val" id="timerVal">60s</span></div>
+        <div class="stats-bar" id="statsBar" style="display:none;">
+            <div>⭐ Markah: <span class="stat-val" id="scoreVal">0</span></div>
+            <div>🔥 Combo: <span class="stat-val" id="comboVal">0</span></div>
+            <div>⏱️ Masa: <span class="stat-val" id="timerVal">60s</span></div>
         </div>
 
-        <!-- View 1: 顺口溜记忆卡 -->
-        <div id="formulaView" class="formula-container">
-            <!-- Dynamic Content Generated via JS -->
-        </div>
-
-        <!-- View 2: 卡片配对游戏 -->
+        <div id="formulaView" class="formula-container"></div>
         <div id="matchingView" style="display: none; width: 100%;">
-            <div class="matching-grid" id="matchingGrid">
-                <!-- Dynamic Content -->
-            </div>
+            <div class="matching-grid" id="matchingGrid"></div>
         </div>
-
-        <!-- View 3: 问答模式 -->
         <div id="quizView" style="display: none; width: 100%;">
             <div class="quiz-container">
-                <div class="quiz-question" id="quizQuestion">Soalan akan dipaparkan di sini</div>
-                <div class="quiz-options" id="quizOptions">
-                    <!-- Dynamic Content -->
-                </div>
+                <div class="quiz-question" id="quizQuestion">Loading...</div>
+                <div class="quiz-options" id="quizOptions"></div>
             </div>
         </div>
     </main>
 
-    <!-- 结算 Modal -->
     <div class="modal" id="resultModal">
         <div class="modal-content">
-            <div style="font-size:0.85rem; color:#f59e0b; font-weight:800; margin-bottom:5px;">PTRB TUISYEN RIANG</div>
-            <h2 style="color:var(--primary); margin-bottom:10px;">🎉 Tahniah / 组合完成！</h2>
-            <p style="color:var(--text-muted); font-size:0.9rem;">Anda telah menyelesaikan cabaran!</p>
-            <div style="margin:20px 0; font-size:2rem; font-weight:800; color:var(--primary-light);" id="finalScore">
-                0 Mata
-            </div>
-            <p id="evalText" style="font-weight:600; font-size:0.95rem; color:var(--accent);"></p>
-            <button class="restart-btn" onclick="restartCurrentGame()">Main Semula / 再玩一次</button>
+            <div style="font-size:0.8rem; color:#f59e0b; font-weight:800; margin-bottom:5px;">PTRB TUISYEN RIANG</div>
+            <h2 style="color:var(--primary); margin-bottom:10px;">🎉 Syabas / 组合完成！</h2>
+            <div style="margin:15px 0; font-size:1.8rem; font-weight:800; color:var(--primary-light);" id="finalScore">0 Mata</div>
+            <p id="evalText" style="font-weight:600; font-size:0.9rem; color:var(--accent);"></p>
+            <button class="restart-btn" id="btnRestart">Main Semula / 再玩一次</button>
         </div>
     </div>
 
-    <footer>
-        © PTRB Tuisyen Riang - Modul Lengkap Sejarah Tingkatan 1
-    </footer>
+    <footer>© PTRB Tuisyen Riang</footer>
 
     <script>
-        // 四大文明核心知识库
         const tamadunData = [
             {
-                id: 'meso',
-                name: 'Tamadun Mesopotamia',
-                cn: '美索不达米亚文明',
-                formula: 'Raja - Undang-undang - Tali air',
-                formulaCn: '国王 + 法律 + 灌溉水道',
+                id: 'meso', name: 'Tamadun Mesopotamia', cn: '美索不达米亚文明',
+                formula: 'Raja - Undang-undang - Tali air', formulaCn: '国王 + 法律 + 灌溉水道',
                 keywords: [
-                    { ms: 'Raja', cn: '国王', desc: 'Pemimpin utama / 最高统治者' },
-                    { ms: 'Undang-undang', cn: '法律', desc: 'Kod Hammurabi / 汉谟拉比法典' },
-                    { ms: 'Tali air', cn: '灌溉水道', desc: 'Pertanian & irigasi / 水利工程' },
-                    { ms: 'Cuneiform', cn: '楔形文字', desc: 'Tulisan terawal / 最早文字' }
+                    { ms: 'Raja', cn: '国王' }, { ms: 'Undang-undang', cn: '法律' },
+                    { ms: 'Tali air', cn: '灌溉水道' }, { ms: 'Cuneiform', cn: '楔形文字' }
                 ]
             },
             {
-                id: 'mesir',
-                name: 'Tamadun Mesir Purba',
-                cn: '古埃及文明',
-                formula: 'Firaun - Piramid - Sphinx - Pertanian',
-                formulaCn: '法老 + 金字塔 + 狮身人面像 + 农业',
+                id: 'mesir', name: 'Tamadun Mesir Purba', cn: '古埃及文明',
+                formula: 'Firaun - Piramid - Sphinx', formulaCn: '法老 + 金字塔 + 狮身人面像',
                 keywords: [
-                    { ms: 'Firaun', cn: '法老', desc: 'Raja Mesir Purba / 埃及国王' },
-                    { ms: 'Piramid', cn: '金字塔', desc: 'Makam Firaun / 法老陵墓' },
-                    { ms: 'Sphinx', cn: '狮身人面像', desc: 'Patung singa kepala manusia / 守护神像' },
-                    { ms: 'Pertanian', cn: '农业', desc: 'Lembah Sungai Nil / 尼罗河农业' }
+                    { ms: 'Firaun', cn: '法老' }, { ms: 'Piramid', cn: '金字塔' },
+                    { ms: 'Sphinx', cn: '狮身人面像' }, { ms: 'Pertanian', cn: '农业' }
                 ]
             },
             {
-                id: 'indus',
-                name: 'Tamadun Indus',
-                cn: '印度河流域文明',
-                formula: 'Grid - Perparitan - Kertas',
-                formulaCn: '方格规划 + 排水系统 + 纸',
+                id: 'indus', name: 'Tamadun Indus', cn: '印度河流域文明',
+                formula: 'Grid - Perparitan - Kertas', formulaCn: '方格规划 + 排水系统 + 纸',
                 keywords: [
-                    { ms: 'Grid', cn: '方格规划', desc: 'Bandar terancang / 规划整齐的城市' },
-                    { ms: 'Sistem perparitan', cn: '排水系统', desc: 'Perparitan tertutup / 地下有盖排水沟' },
-                    { ms: 'Mohenjo-Daro', cn: '摩亨佐-达罗', desc: 'Bandar utama / 核心遗址城市' }
+                    { ms: 'Grid', cn: '方格规划' }, { ms: 'Sistem perparitan', cn: '排水系统' },
+                    { ms: 'Mohenjo-Daro', cn: '摩亨佐-达罗' }
                 ]
             },
             {
-                id: 'huanghe',
-                name: 'Tamadun Huang He',
-                cn: '黄河文明',
-                formula: 'Sutera - Wang syiling - Kompas - Besi',
-                formulaCn: '丝绸 + 铜钱 + 磁罗盘 + 铁器',
+                id: 'huanghe', name: 'Tamadun Huang He', cn: '黄河文明',
+                formula: 'Sutera - Wang syiling - Kompas', formulaCn: '丝绸 + 铜钱 + 磁罗盘',
                 keywords: [
-                    { ms: 'Sutera', cn: '丝绸', desc: 'Kain sutera / 传统丝织品' },
-                    { ms: 'Wang syiling', cn: '铜钱', desc: 'Mata wang / 早期货币' },
-                    { ms: 'Kompas magnetik', cn: '磁罗盘', desc: 'Arah pandu / 指南针' },
-                    { ms: 'Peralatan besi', cn: '铁器', desc: 'Alat pertanian besi / 铁制农具' }
+                    { ms: 'Sutera', cn: '丝绸' }, { ms: 'Wang syiling', cn: '铜钱' },
+                    { ms: 'Kompas magnetik', cn: '磁罗盘' }, { ms: 'Peralatan besi', cn: '铁器' }
                 ]
             }
         ];
 
         let currentTab = 'formula';
-        let score = 0;
-        let combo = 0;
-        let timer = null;
-        let timeLeft = 60;
-        let selectedCards = [];
-        let matchedCount = 0;
+        let score = 0, combo = 0, timer = null, timeLeft = 60;
+        let selectedCards = [], matchedCount = 0;
 
-        // 语音朗读功能 (Web Speech API)
         function speak(text) {
             if ('speechSynthesis' in window) {
                 const msg = new SpeechSynthesisUtterance(text);
                 msg.lang = 'ms-MY';
-                msg.rate = 0.9;
                 window.speechSynthesis.speak(msg);
             }
         }
 
-        // 切换 Tab
+        document.getElementById('btnFormula').onclick = () => switchTab('formula');
+        document.getElementById('btnMatching').onclick = () => switchTab('matching');
+        document.getElementById('btnQuiz').onclick = () => switchTab('quiz');
+        document.getElementById('btnRestart').onclick = () => {
+            document.getElementById('resultModal').classList.remove('active');
+            if (currentTab === 'matching') startMatchingGame();
+            else if (currentTab === 'quiz') startQuizGame();
+        };
+
         function switchTab(tab) {
             currentTab = tab;
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            if(tab === 'formula') document.getElementById('btnFormula').classList.add('active');
+            if(tab === 'matching') document.getElementById('btnMatching').classList.add('active');
+            if(tab === 'quiz') document.getElementById('btnQuiz').classList.add('active');
 
             document.getElementById('formulaView').style.display = 'none';
             document.getElementById('matchingView').style.display = 'none';
             document.getElementById('quizView').style.display = 'none';
-
             clearInterval(timer);
 
             if (tab === 'formula') {
@@ -617,24 +431,112 @@
             }
         }
 
-        // 渲染顺口溜卡片 View 1
         function renderFormula() {
             const container = document.getElementById('formulaView');
             container.innerHTML = '';
-
             tamadunData.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'formula-card';
                 card.innerHTML = `
-                    <h3>
-                        ${item.name}
-                        <span class="formula-tag">${item.cn}</span>
-                    </h3>
-                    <div class="formula-box">
-                        💡 Formula / 口诀: <br>${item.formula}<br>
-                        <span style="font-size:0.8rem; font-weight:normal; color:#475569;">(${item.formulaCn})</span>
-                    </div>
+                    <h3>${item.name} <span class="formula-tag">${item.cn}</span></h3>
+                    <div class="formula-box">💡 Formula: ${item.formula}<br><span style="font-size:0.75rem;font-weight:400;color:#64748b;">(${item.formulaCn})</span></div>
                     <ul class="keyword-list">
-                        ${item.keywords.map(k => `
-                            <li>
-                                🔹 <strong>${k.ms}</strong> (${k.cn}
+                        ${item.keywords.map(k => `<li>🔹 <strong>${k.ms}</strong> (${k.cn}) <button class="audio-btn" onclick="speak('${k.ms}')">🔊</button></li>`).join('')}
+                    </ul>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function startMatchingGame() {
+            score = 0; combo = 0; matchedCount = 0; selectedCards = []; timeLeft = 60;
+            updateStats(); startTimer();
+            const grid = document.getElementById('matchingGrid');
+            grid.innerHTML = '';
+
+            let deck = [];
+            tamadunData.forEach(t => {
+                t.keywords.forEach(k => deck.push({ text: k.ms, cn: k.cn, tamadunId: t.id }));
+            });
+            deck = deck.sort(() => 0.5 - Math.random()).slice(0, 4);
+
+            let gameDeck = [];
+            deck.forEach(item => {
+                const parent = tamadunData.find(t => t.id === item.tamadunId);
+                gameDeck.push({ id: item.tamadunId, text: item.text, cn: item.cn, matchId: item.text });
+                gameDeck.push({ id: item.tamadunId, text: parent.name, cn: parent.cn, matchId: item.text });
+            });
+            gameDeck.sort(() => 0.5 - Math.random());
+
+            gameDeck.forEach((cardData, idx) => {
+                const card = document.createElement('div');
+                card.className = 'game-card';
+                card.dataset.matchId = cardData.matchId;
+                card.dataset.index = idx;
+                card.innerHTML = `<div class="card-text">${cardData.text}</div><div class="card-cn">${cardData.cn}</div>`;
+                card.onclick = () => handleCardClick(card);
+                grid.appendChild(card);
+            });
+        }
+
+        function handleCardClick(card) {
+            if (selectedCards.length === 2 || card.classList.contains('selected') || card.classList.contains('matched')) return;
+            card.classList.add('selected');
+            selectedCards.push(card);
+
+            if (selectedCards.length === 2) {
+                const [c1, c2] = selectedCards;
+                if (c1.dataset.matchId === c2.dataset.matchId && c1.dataset.index !== c2.dataset.index) {
+                    setTimeout(() => {
+                        c1.className = 'game-card matched';
+                        c2.className = 'game-card matched';
+                        selectedCards = [];
+                        score += 20 + combo * 5; combo++; matchedCount += 2;
+                        updateStats();
+                        if (matchedCount === document.querySelectorAll('.game-card').length) endGame(true);
+                    }, 300);
+                } else {
+                    setTimeout(() => {
+                        c1.classList.remove('selected'); c2.classList.remove('selected');
+                        selectedCards = []; combo = 0; updateStats();
+                    }, 500);
+                }
+            }
+        }
+
+        let quizList = [], currentQuizIdx = 0;
+        function startQuizGame() {
+            score = 0; combo = 0; currentQuizIdx = 0; timeLeft = 45;
+            updateStats(); startTimer();
+            quizList = [];
+            tamadunData.forEach(t => {
+                t.keywords.forEach(k => {
+                    quizList.push({
+                        question: `Apakah tamadun untuk kata kunci "<strong>${k.ms}</strong>" (${k.cn})?`,
+                        correct: t.name,
+                        options: [t.name, ...tamadunData.filter(x => x.id !== t.id).map(x => x.name)].sort(() => 0.5 - Math.random())
+                    });
+                });
+            });
+            quizList.sort(() => 0.5 - Math.random());
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            if (currentQuizIdx >= quizList.length) { endGame(true); return; }
+            const q = quizList[currentQuizIdx];
+            document.getElementById('quizQuestion').innerHTML = q.question;
+            const optContainer = document.getElementById('quizOptions');
+            optContainer.innerHTML = '';
+
+            q.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerHTML = `<span>${opt}</span> <span>➔</span>`;
+                btn.onclick = () => handleQuizAnswer(btn, opt, q.correct);
+                optContainer.appendChild(btn);
+            });
+        }
+
+        function handleQuizAnswer(btn, selected, correct) {
+            document.querySelectorAll('.option-btn').forEach(b => b.st
