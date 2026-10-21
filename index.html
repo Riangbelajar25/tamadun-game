@@ -5,13 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PTRB Tuisyen Riang - Game 4 Tamadun</title>
     <style>
-        body { font-family: sans-serif; background: #e0f2fe; margin: 0; padding: 15px; text-align: center; }
-        header { background: #1e3a8a; color: white; padding: 15px; border-radius: 12px; margin-bottom: 15px; }
-        .nav-btn { background: #0284c7; color: white; border: none; padding: 10px 15px; border-radius: 8px; margin: 3px; font-size: 1rem; font-weight: bold; }
-        .card { background: white; padding: 15px; margin: 10px 0; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: left; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .game-btn { background: #ffffff; border: 2px solid #0284c7; padding: 15px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; }
-        .opt-btn { width: 100%; background: white; border: 2px solid #cbd5e1; padding: 12px; margin: 5px 0; border-radius: 8px; font-weight: bold; text-align: left; }
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #0284c7;
+            --success: #10b981;
+            --danger: #ef4444;
+            --bg: #f0f9ff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; user-select: none; }
+        body { background: var(--bg); color: #333; padding: 12px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        
+        header { width: 100%; max-width: 500px; background: linear-gradient(135deg, #1e3a8a, #2563eb); color: white; padding: 15px; border-radius: 14px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 12px; }
+        header h2 { font-size: 1.2rem; color: #fbbf24; margin-bottom: 4px; }
+        header p { font-size: 0.85rem; opacity: 0.9; }
+
+        .nav { display: flex; gap: 8px; width: 100%; max-width: 500px; margin-bottom: 12px; }
+        .nav-btn { flex: 1; padding: 12px 5px; border: none; border-radius: 10px; background: #e0f2fe; color: var(--secondary); font-weight: bold; font-size: 0.9rem; cursor: pointer; }
+        .nav-btn.active { background: var(--secondary); color: white; box-shadow: 0 2px 6px rgba(2,132,199,0.3); }
+
+        #matchingContainer { width: 100%; max-width: 500px; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 10px; }
+
+        .card { background: white; border: 2px solid #cbd5e1; border-radius: 12px; padding: 12px 8px; text-align: center; min-height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .card .title { font-weight: bold; font-size: 0.9rem; color: #1e293b; }
+        .card .sub { font-size: 0.75rem; color: #64748b; margin-top: 4px; }
+
+        /* 卡片状态 */
+        .card.selected { border-color: #f59e0b; background: #fef3c7; transform: scale(1.02); }
+        .card.correct { border-color: var(--success); background: #d1fae5; opacity: 0.5; pointer-events: none; }
+        .card.wrong { border-color: var(--danger); background: #fee2e2; }
+
+        .stats { display: flex; justify-content: space-between; background: white; padding: 10px 15px; border-radius: 10px; font-weight: bold; font-size: 0.9rem; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .stats span { color: var(--secondary); }
+
+        .formula-card { background: white; padding: 14px; border-radius: 12px; margin-bottom: 10px; border-left: 5px solid var(--secondary); box-shadow: 0 2px 5px rgba(0,0,0,0.05); text-align: left; }
+        .formula-card h3 { font-size: 1rem; color: var(--primary); margin-bottom: 6px; }
+        .formula-card p { font-size: 0.85rem; color: #475569; line-height: 1.5; }
+
+        .quiz-card { background: white; padding: 20px 15px; border-radius: 14px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .opt-btn { width: 100%; background: #f8fafc; border: 2px solid #e2e8f0; padding: 12px; margin: 6px 0; border-radius: 10px; font-weight: bold; font-size: 0.9rem; text-align: left; cursor: pointer; }
+        .opt-btn.correct { background: #d1fae5; border-color: var(--success); }
+        .opt-btn.wrong { background: #fee2e2; border-color: var(--danger); }
     </style>
 </head>
 <body>
@@ -21,64 +56,161 @@
         <p>4 Tamadun Awal Dunia (Sejarah Form 1)</p>
     </header>
 
-    <div>
-        <button class="nav-btn" onclick="showFormula()">💡 口诀 Formula</button>
-        <button class="nav-btn" onclick="startMatching()">🧩 配对 Matching</button>
-        <button class="nav-btn" onclick="startQuiz()">⚡ 冲刺 Kuiz</button>
+    <div class="nav">
+        <button class="nav-btn active" id="tab1" onclick="switchView('formula')">💡 口诀 Formula</button>
+        <button class="nav-btn" id="tab2" onclick="switchView('matching')">🧩 配对 Matching</button>
+        <button class="nav-btn" id="tab3" onclick="switchView('quiz')">⚡ 冲刺 Kuiz</button>
     </div>
 
-    <div id="content" style="margin-top: 15px;"></div>
+    <div id="mainView" style="width: 100%; max-width: 500px;"></div>
 
     <script>
-        const data = [
-            { name: 'Tamadun Mesopotamia', cn: '美索不达米亚', kw: 'Raja / Undang-undang / Tali air' },
-            { name: 'Tamadun Mesir Purba', cn: '古埃及', kw: 'Firaun / Piramid / Sphinx' },
-            { name: 'Tamadun Indus', cn: '印度河流域', kw: 'Grid / Sistem perparitan / Kertas' },
-            { name: 'Tamadun Huang He', cn: '黄河文明', kw: 'Sutera / Wang syiling / Kompas' }
+        const tamadunData = [
+            { id: 1, name: 'Tamadun Mesopotamia', cn: '美索不达米亚', kw: 'Raja / Undang-undang / Tali air', pair: 'Mesopotamia' },
+            { id: 2, name: 'Tamadun Mesir Purba', cn: '古埃及', kw: 'Firaun / Piramid / Sphinx', pair: 'Mesir Purba' },
+            { id: 3, name: 'Tamadun Indus', cn: '印度河流域', kw: 'Grid / Sistem perparitan', pair: 'Indus' },
+            { id: 4, name: 'Tamadun Huang He', cn: '黄河文明', kw: 'Sutera / Wang syiling / Kompas', pair: 'Huang He' }
         ];
 
-        function showFormula() {
+        let selectedCards = [];
+        let score = 0;
+        let matchedPairs = 0;
+
+        function switchView(type) {
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            if(type === 'formula') document.getElementById('tab1').classList.add('active');
+            if(type === 'matching') document.getElementById('tab2').classList.add('active');
+            if(type === 'quiz') document.getElementById('tab3').classList.add('active');
+
+            if (type === 'formula') renderFormula();
+            if (type === 'matching') startMatching();
+            if (type === 'quiz') startQuiz();
+        }
+
+        // 1. 口诀模式
+        function renderFormula() {
             let html = '';
-            data.forEach(item => {
-                html += `<div class="card">
-                    <h3 style="color:#1e3a8a;margin:0 0 5px 0;">${item.name} (${item.cn})</h3>
-                    <p style="margin:0;color:#0284c7;font-weight:bold;">Kata Kunci: ${item.kw}</p>
+            tamadunData.forEach(t => {
+                html += `
+                <div class="formula-card">
+                    <h3>${t.name} (${t.cn})</h3>
+                    <p>🔑 <strong>Kata Kunci:</strong> ${t.kw}</p>
                 </div>`;
             });
-            document.getElementById('content').innerHTML = html;
+            document.getElementById('mainView').innerHTML = html;
         }
 
+        // 2. 配对模式
         function startMatching() {
-            let html = '<h3 style="color:#1e3a8a;">Sila padankan kata kunci / 点击对应匹配</h3><div class="grid">';
-            data.forEach(item => {
-                html += `<button class="game-btn" onclick="alert('✅ Right! ${item.name}')">${item.kw}</button>`;
-                html += `<button class="game-btn" onclick="alert('✅ Right! ${item.name}')">${item.name}</button>`;
+            score = 0;
+            matchedPairs = 0;
+            selectedCards = [];
+
+            // 生成卡片对
+            let cards = [];
+            tamadunData.forEach(t => {
+                cards.push({ groupId: t.id, text: t.name, sub: t.cn });
+                cards.push({ groupId: t.id, text: t.kw, sub: 'Kata Kunci' });
             });
-            html += '</div>';
-            document.getElementById('content').innerHTML = html;
+
+            // 打乱卡片
+            cards.sort(() => Math.random() - 0.5);
+
+            let gridHtml = `
+            <div class="stats">
+                <div>Markah: <span id="scoreVal">0</span></div>
+                <div>Status: <span id="statusVal">Sila Padankan</span></div>
+            </div>
+            <div class="grid">`;
+
+            cards.forEach((c, index) => {
+                gridHtml += `
+                <div class="card" id="card-${index}" onclick="selectCard(${index}, ${c.groupId})">
+                    <div class="title">${c.text}</div>
+                    <div class="sub">${c.sub}</div>
+                </div>`;
+            });
+
+            gridHtml += `</div>`;
+            document.getElementById('mainView').innerHTML = gridHtml;
         }
 
-        function startQuiz() {
-            let item = data[Math.floor(Math.random() * data.length)];
-            let html = `<div class="card" style="text-align:center;">
-                <h3>Kata kunci: <span style="color:#0284c7;">"${item.kw}"</span> merujuk kepada?</h3>`;
-            data.forEach(d => {
-                html += `<button class="opt-btn" onclick="check('${d.name}', '${item.name}')">${d.name}</button>`;
-            });
-            html += '</div>';
-            document.getElementById('content').innerHTML = html;
-        }
+        function selectCard(index, groupId) {
+            let cardEl = document.getElementById(`card-${index}`);
 
-        function check(ans, correct) {
-            if(ans === correct) {
-                alert('🎉 Correct / 正确！');
-                startQuiz();
-            } else {
-                alert('❌ Wrong / 错误！Cuba lagi');
+            // 忽略已配对或已选中的卡片
+            if (cardEl.classList.contains('correct') || cardEl.classList.contains('selected') || selectedCards.length >= 2) {
+                return;
+            }
+
+            cardEl.classList.add('selected');
+            selectedCards.push({ index, groupId, el: cardEl });
+
+            if (selectedCards.length === 2) {
+                let [c1, c2] = selectedCards;
+
+                if (c1.groupId === c2.groupId) {
+                    // 配对正确
+                    setTimeout(() => {
+                        c1.el.className = 'card correct';
+                        c2.el.className = 'card correct';
+                        score += 20;
+                        matchedPairs++;
+                        document.getElementById('scoreVal').innerText = score;
+                        selectedCards = [];
+
+                        if (matchedPairs === tamadunData.length) {
+                            document.getElementById('statusVal').innerText = '🎉 Tahniah!';
+                        }
+                    }, 300);
+                } else {
+                    // 配对错误
+                    setTimeout(() => {
+                        c1.el.classList.add('wrong');
+                        c2.el.classList.add('wrong');
+                    }, 200);
+
+                    setTimeout(() => {
+                        c1.el.className = 'card';
+                        c2.el.className = 'card';
+                        selectedCards = [];
+                    }, 800);
+                }
             }
         }
 
-        showFormula();
+        // 3. 问答模式
+        function startQuiz() {
+            let t = tamadunData[Math.floor(Math.random() * tamadunData.length)];
+            let options = [...tamadunData].sort(() => Math.random() - 0.5);
+
+            let html = `
+            <div class="quiz-card">
+                <h3 style="color:#1e3a8a; margin-bottom:12px;">Kata Kunci:</h3>
+                <div style="font-weight:bold; color:#0284c7; font-size:1.1rem; margin-bottom:20px;">"${t.kw}"</div>
+                <p style="font-size:0.85rem; color:#64748b; margin-bottom:15px;">Merujuk kepada tamadun mana?</p>`;
+
+            options.forEach(opt => {
+                html += `<button class="opt-btn" onclick="checkQuiz(this, ${opt.id}, ${t.id})">${opt.name}</button>`;
+            });
+
+            html += `</div>`;
+            document.getElementById('mainView').innerHTML = html;
+        }
+
+        function checkQuiz(btn, selectedId, correctId) {
+            document.querySelectorAll('.opt-btn').forEach(b => b.style.pointerEvents = 'none');
+            if (selectedId === correctId) {
+                btn.classList.add('correct');
+                setTimeout(() => startQuiz(), 1000);
+            } else {
+                btn.classList.add('wrong');
+                setTimeout(() => startQuiz(), 1200);
+            }
+        }
+
+        // 默认加载口诀
+        renderFormula();
     </script>
 </body>
 </html>
